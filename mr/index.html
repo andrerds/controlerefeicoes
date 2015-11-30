@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="msapplication-tap-highlight" content="no"/>
+		<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" href="css/index/style.css">
+		<title>Sistema de Registro de Refeições **BabyEatApp**</title>
+		<style>
+		#section .button {
+    		 box-sizing: border-box;
+		} </style>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="moving-background">
+				<div id="parallax" class="clear">
+					<div id="last-layer" class="parallax-layer">
+						<img src="img/index/final-background.png" alt="final background" />
+					</div>
+					<div id="bottom-layer" class="parallax-layer">
+						<img src="img/index/middle-layer.png" />
+					</div>
+					<div id="top-layer" class="parallax-layer">
+						<img src="img/index/top-layer.png" />
+					</div>
+				</div>
+			</div>
+
+
+			<div class="app" id="app">
+
+				<h4>BabyEat</h4>
+				<div>  <h6>Dando uma olhadinha no servido Aguarde: <img src="img/loading.gif"/> </h6>
+				</div>
+				<div id="deviceready" class="blink">
+
+				</div>
+
+			</div>
+		</div>
+
+		<script src="js/index/jquery.min.js"></script>
+
+		<script src="js/index/jquery.parallax.js"></script>
+		<script src="js/index/main.js"></script>
+		<!-- verificando status com o servidor se encontrar arquivo descrito na URL retorna sistema on se nao servidor off.-->
+		<script   type="text/javascript">
+			var app = $("#app");
+			var deviceready = app.find("#deviceready");
+			 window.setTimeout("location.href='sis.html'", 2000);// yes response came
+
+/*
+			$.ajax({
+				url : "http://rdsinfor.com/app/responseText.txt",
+				type : "get",
+				dataType : 'jsonp',
+				crossDomain : true,
+				timeout : 500, // it is milliseconds
+				complete : function(xhr, responseText, thrownError) {
+					if (xhr.status == "404") {
+						deviceready.html("<p class='event ok'><strong>Servidor está online</p></strong>"), (responseText);
+
+						 window.setTimeout("location.href='sis.html'", 2000);// yes response came
+					} else {
+
+						deviceready.html("<p class='event listening'><strong>Servidor está OffLine</strong></p>  <a href='#' onclick='window.location.reload(true);'><img src='img/reload.png'></a>  ");
+
+						$('h6').css("color","red") . fadeOut(5800);  // no response came
+
+
+					}
+
+				}
+			}); */
+		</script>
+
+
+
+
+
+
+
+
+
+
+
+		<!--
+
+		<div id="wrapper">
+		<div id="moving-background">
+		<div id="parallax" class="clear">
+		<div id="last-layer" class="parallax-layer">
+		<img src="img/index/final-background.png" alt="final background" />
+		</div>
+		<div id="bottom-layer" class="parallax-layer">
+		<img src="img/index/middle-layer.png" />
+		</div>
+
+		<div id="top-layer" class="parallax-layer">
+		<img src="img/index/top-layer.png" />
+		</div>
+
+		</div>
+		</div>
+		<div id="circles"></div>
+
+		</div>
+
+		<script src="js/index/jquery.min.js"></script>
+
+		<script src="js/index/jquery.event.frame.js"></script>
+		<script src="js/index/jquery.parallax.js"></script>
+		<script src="js/index/main.js"></script>
+
+		-->
+	</body>
+</html>

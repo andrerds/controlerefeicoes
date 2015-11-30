@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Relatorio Diarío</title>
+	<link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/jquery.mobile-1.4.0.min.css">
+ 	<link rel="stylesheet" href="../css/sis.css">
+ 	<link rel="stylesheet" href="../css/andrerds/custon.css">
+ 	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery.mobile-1.4.0.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+ 	<script>
+		$(function() {
+			$( "[data-role='navbar']" ).navbar();
+			$( "[data-role='header'], [data-role='footer']" ).toolbar();
+		});
+		// Update the contents of the toolbars
+		$( document ).on( "pagecontainerchange", function() {
+			// Each of the four pages in this demo has a data-title attribute
+			// which value is equal to the text of the nav button
+			// For example, on first page: <div data-role="page" data-title="Info">
+			var current = $( ".ui-page-active" ).jqmData( "title" );
+			// Change the heading
+			$( "[data-role='header'] h1" ).text( current );
+			// Remove active class from nav buttons
+			$( "[data-role='navbar'] a.ui-btn-active" ).removeClass( "ui-btn-active" );
+			// Add active class to current nav button
+			$( "[data-role='navbar'] a" ).each(function() {
+				if ( $( this ).text() === current ) {
+					$( this ).addClass( "ui-btn-active" );
+				}
+			});
+		});
+	</script>
+
+</head>
+<body onload="time() + data()">
+    <div data-role="header" data-position="fixed" data-theme="a">
+ <a href="#" data-rel="back" class="ui-btn ui-btn-left ui-alt-icon ui-nodisc-icon ui-corner-all ui-btn-icon-notext ui-icon-carat-l">Back</a>
+
+        <h1>Relatorio Diario</h1>
+    </div><!-- /header -->
+
+	<div data-role="page" data-title="Rel.Diarío"class="jqm-demos" id="container">
+	<div role="main" class="ui-content jqm-content jqm-fullwidth"  id="wrapper">
+
+
+		<div> <!--  menu -->
+			<p id="txt" class="text-center" style="font-size: small"> </p>
+				<p id="datajs" class="text-center" style="margin:-15px 0px 0px 5px; font-size: 14px;"> </p>
+
+	  </div>
+
+ 	 <div id="retorno"> </div>
+
+
+  	  <!-- Default panel<button id="txt" class="horas ui-btn ui-btn-right ui-alt-icon ui-nodisc-icon ui-corner-all ui-btn-icon-notex" > </button> contents -->
+
+    <div data-role="collapsible" data-mini="true" data-inset="true">
+    <h4>Relatorio Diarío  -  <span class=" pull-right"><span class="h6"> Até agora Mamou :</span>  <span class="badge" id="total_diario" style="font-size: small">100</span> </span></h4>
+    <form>
+   <input id="filterTable-input" data-type="search" data-role="date" placeholder="Pesquisar" style="height: 5px">
+   </form>
+
+</div>	<div class="table-responsive" style="background-color: #FFFFFF">
+
+
+                            <table class="table table-striped"   data-filter="true" data-input="#filterTable-input">
+
+                                 <thead class="warning">
+                                 	<th>Anotação</th>
+                                    <th>Q. ml</th>
+                                    <th>Hora</th>
+                                    <th>Data</th>
+                                    <th colspan="2">Modificar</th>
+                                   </thead>
+                                    <tbody>
+                                    <td class="load"><img src="../img/loading.gif" /> </td>
+                                    </tbody>
+                                </table> <!-- Table -->
+                            </div>
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="ui-body ui-body-a ui-corner-all">
+								<div class="header">
+									<p class="pull-right">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span>
+											<span class="sr-only">Fechar</span>
+										</button>
+									</p>
+									<h4 class="modal-title" id="myModalLabel"> Editar Anotação.   </h4>
+								</div>
+								<div class="modal-body"></div>
+							</div>
+						</div>
+					</div>
+
+
+					   <div class="modal fade" id="modal_total_diario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="ui-body ui-body-a ui-corner-all">
+								<div class="header">
+									<p class="pull-right">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span>
+											<span class="sr-only">Fechar</span>
+										</button>
+									</p>
+									<h4 class="modal-title" id="myModalLabel"> Editar Anotação.   </h4>
+								</div>
+								<div class="modal-body"></div>
+							</div>
+						</div>
+					</div>
+
+
+<button type="submit"  class="ui-btn ui-btn-b ui-btn-icon-left ui-icon-plus ui-corner-all ui-shadow" id="btn_total"> <span id="total_diario2" > </span>ml -  Salvar total </button>
+
+  		<pre  class="smaller">{ $ Todos direitos reservados para Babyeat - by André rds */ } </pre>
+
+		</div><!-- /content -->
+ 		</div><!-- /page -->
+
+	<div data-role="footer" data-position="fixed" data-theme="a">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="../index.html" data-prefetch="true" data-transition="fade">Home</a></li>
+				<li><a href="../rel_diario/index.html" data-prefetch="true" data-transition="flip">Rel.Diarío</a></li>
+				<li><a href="../rel_geral/index.html" data-prefetch="true" data-transition="turn" data-ajax="false">Rel. Geral</a></li>
+				<li><a href="../rel_mes/index.html" data-prefetch="true" data-transition="slide">Rel. M</a></li>
+			</ul>
+		</div><!-- /navbar -->
+	</div><!-- /footer -->
+		<script src="../js/salvar_total_diario.js"></script>
+
+
+		<script src="../js/json_total_diario.js" type="text/javascript"></script>
+
+		<script src="../js/listar_rel_diario.js"></script>
+
+		<script src="../js/index/main.js"></script>
+		<script src="../js/horas.js" type="text/javascript"></script>
+
+</body>
+</html>

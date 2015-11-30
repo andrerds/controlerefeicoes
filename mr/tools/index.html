@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Ferramenta : Consultar Totais diarios e Mensais.</title>
+		<link rel="shortcut icon" href="../favicon.ico">
+		
+		<link rel="stylesheet" href="../css/datapicker/jquery.mobile.datepicker.css" />
+		<link rel="stylesheet" href="../css/datapicker/jquery.mobile.datepicker.theme.css" />
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/jquery.mobile-1.4.0.min.css">
+		<link rel="stylesheet" href="../css/sis.css">
+		<link rel="stylesheet" href="../css/andrerds/custon.css">
+		<link rel="stylesheet" href="../css/andrerds/modal.css">
+		<script src="../js/jquery.js"></script>
+
+		<script src="../js/jquery.mobile-1.4.0.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+		<script>
+			$(function() {
+				$("[data-role='navbar']").navbar();
+				$("[data-role='header'], [data-role='footer']").toolbar();
+			});
+			// Update the contents of the toolbars
+			$(document).on("pagecontainerchange", function() {
+				// Each of the four pages in this demo has a data-title attribute
+				// which value is equal to the text of the nav button
+				// For example, on first page: <div data-role="page" data-title="Info">
+				var current = $(".ui-page-active").jqmData("title");
+				// Change the heading
+				$("[data-role='header'] h1").text(current);
+				// Remove active class from nav buttons
+				$("[data-role='navbar'] a.ui-btn-active").removeClass("ui-btn-active");
+				// Add active class to current nav button
+				$("[data-role='navbar'] a").each(function() {
+					if ($(this).text() === current) {
+						$(this).addClass("ui-btn-active");
+					}
+				});
+			});
+		</script>
+		<script src="../js/calc_listar_total_mes.js"></script>
+		<script src="../js/calc_listar_total_diario.js"></script>
+		<script src="../js/carregar_ml_diario.js"></script>
+		<script src="../js/carregar_mes.js"></script>
+	</head>
+	<body>
+
+		<div data-role="header" data-position="fixed" data-theme="a">
+			<span class="pull-right"><a href="../perfil/index.html" data-ajax="false"><img src="https://graph.facebook.com/ingridrossin/picture?type=square" alt="Matheus" class="img-circle" width="40" height="40" /></a> </span>
+			 <a href="#"  class="ui-btn ui-btn-left ui-alt-icon ui-nodisc-icon ui-corner-all ui-btn-icon-notext ui-icon-back" data-mini="true" data-rel="back">BabyEat</a>
+           
+			 <h1>Ferramenta : Consultar Totais diarios e Mensais.</h1>
+		</div><!-- /header -->
+
+		<div data-role="page" data-title="Tools" class="jqm-demos">
+			<div role="main" class="ui-content jqm-content jqm-fullwidth" id="wrapper">
+				<div id="retorno"> </div>
+				<div class="modal"> </div>
+				 
+
+				<div class="alert alert-info">
+					<div class="label label-info" style="font-size: large ; margin: auto -6px">
+						Script Calcular total do Mês.
+					</div>
+					<br />
+					<div class="clearfix" id="retorno_ml" style="margin:10px auto">
+						<div>
+							Mes: <span id="mes" class="text-primary"><img src="../img/020.gif"> </span>
+						</div>
+						<div>
+							Total ml :<span id="total_ml" class="text-primary"><img  src="../img/020.gif"></span>
+						</div>
+					</div>
+					<!-- formulario -->
+					<form  name="form_cad_mes" action="" method="post" id="form_cad_mes_total">
+
+						<input type="number" data-clear-btn="true" name="mes" id="mes" placeholder="Digite o Mês exemplo: 09 ">
+						<span ><img class="load" alt="Loading" src="../img/020.gif" style="display:none !important;"></span>
+						<button type="submit" id="botao_submit" class="btn ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-right ui-btn-a">
+							ver
+
+						</button>
+					</form><!-- /formulario -->
+
+				</div>
+				<div class="alert alert-warning">
+
+					<!-- formulario -->
+					<div class="label label-danger" style="font-size: large ; margin: auto -6px">
+						Script Calcular total do Dia.
+					</div>
+
+					<br />
+					<div class="clearfix" id="retorno_ml_diario" style="margin:10px auto">
+
+						<div>
+							Total ml :<span id="total_ml_diario" class="text-primary"><img   src="../img/020.gif"></span>
+						</div>
+
+						<div id="dml">
+							<div>
+								Data : <span id="ml_diario" class="text-primary"><img   src="../img/020.gif"> </span>
+							</div>
+						</div>
+
+					</div>
+					<form  name="form_cad_dia" action="" method="post" id="form_cad_dia_total">
+						<span>Informe a Data</span>
+						<input data-role="date"   type="date"  id="data"  name="data">
+
+						<span ><img class="load_dia" alt="Loading" src="../img/020.gif" style="display:none !important;"></span>
+						<button type="submit" id="botao_submit" class="btn ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-right ui-btn-a">
+							ver
+
+						</button>
+					</form>
+
+					<!-- /formulario -->
+
+				</div>
+				<pre  class="smaller">{ $ Todos direitos reservados para Babyeat - by André rds */ } </pre>
+				
+		 
+
+			</div><!-- /content -->
+		</div><!-- /page -->
+
+		<div data-role="footer" data-position="fixed" data-theme="a">
+			<div data-role="navbar">
+				<ul>
+					<li>
+						<a href="../sis.html" data-prefetch="true" data-transition="fade" data-ajax="false">BabyEat Home</a>
+					</li>
+					<li>
+						<a href="#"onClick="window.location.reload(true )" data-prefetch="true" data-transition="flip" data-ajax="false">Tools</a>
+					</li>
+				 
+					 
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+		<script src="../js/calc_update_total_mes.js"></script>
+		<script src="../js/calc_update_total_dia.js"></script>
+
+		<!--script src="js/json_total_diario.js"></script-->
+		<!--script src="js/json_add_anotacoes.js"></script-->
+		<!--script src="js/json_listar_anotacoes.js" type="text/javascript"></script-->
+		<script src="../js/index/main.js"></script>
+		<script src="../js/horas.js" type="text/javascript"></script>
+
+	</body>
+</html>

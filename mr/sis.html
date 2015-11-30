@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>BabyEart App by André</title>
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" href="css/datapicker/jquery.mobile.datepicker.css" />
+		<link rel="stylesheet" href="css/datapicker/jquery.mobile.datepicker.theme.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.0.min.css">
+		<link rel="stylesheet" href="css/sis.css">
+		<link rel="stylesheet" href="css/andrerds/custon.css">
+		<link rel="stylesheet" type="text/css" href="css/andrerds/modal.css" />
+		<script src="js/jquery.js"></script>
+		<script src="js/jquery-latest.js"></script>
+		<script>
+			(function($) {
+				$(document).ready(function() {
+					$.ajaxSetup({
+						cache : false,
+						beforeSend : function() {
+							$('#content').hide();
+							$('#loading').show();
+						},
+						complete : function() {
+							$('#loading').hide();
+							$('#content').show();
+						},
+						success : function() {
+							$('#loading').hide();
+							$('#content').show();
+						}
+					});
+					var $container = $("#content");
+					$container.load("http://houseon.ddns.net/app/ajax/webserver/tml.php");
+					var refreshId = setInterval(function() {
+						$container.load('http://houseon.ddns.net/app/ajax/webserver/tml.php');
+					}, 12000);
+
+					// buscando mensagens conforme o tanto que foi mamano.
+					$.ajax({
+						cache : false,
+						beforeSend : function() {
+							$('#msg').hide();
+							$('#carregando_msg').show();
+						},
+						complete : function() {
+							$('#carregando_msg').hide();
+							$('#msg').show();
+						},
+						success : function() {
+							$('#carregando_msg').hide();
+							$('#msg').show();
+						}
+					});
+					var $msg = $("#msg");
+					$msg.load("http://houseon.ddns.net/app/ajax/webserver/msg.php");
+					var refreshId = setInterval(function() {
+						$msg.load('http://houseon.ddns.net/app/ajax/webserver/msg.php');
+					}, 12000);
+				});
+			})(jQuery);
+		</script>
+		<script src="js/jquery.mobile-1.4.0.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/datapicker/datepicker.js"></script>
+		<script src="js/datapicker/jquery.mobile.datepicker.js"></script>
+		<script>
+			$(function() {
+				$("[data-role='navbar']").navbar();
+				$("[data-role='header'], [data-role='footer']").toolbar();
+			});
+			// Update the contents of the toolbars
+			$(document).on("pagecontainerchange", function() {
+				// Each of the four pages in this demo has a data-title attribute
+				// which value is equal to the text of the nav button
+				// For example, on first page: <div data-role="page" data-title="Info">
+				var current = $(".ui-page-active").jqmData("title");
+				// Change the heading
+				$("[data-role='header'] h1").text(current);
+				// Remove active class from nav buttons
+				$("[data-role='navbar'] a.ui-btn-active").removeClass("ui-btn-active");
+				// Add active class to current nav button
+				$("[data-role='navbar'] a").each(function() {
+					if ($(this).text() === current) {
+						$(this).addClass("ui-btn-active");
+					}
+				});
+			});
+
+$.mobile.document
+    // "select_refeicao-menu" is the ID generated for the listview when it is created
+    // by the custom selectmenu plugin. Upon creation of the listview widget we
+    // want to prepend an input field to the list to be used for a filter.
+    .on( "listviewcreate", "#select_refeicao-menu", function( e ) {
+        var input,
+            listbox = $( "#select_refeicao-listbox" ),
+            form = listbox.jqmData( "filter-form" ),
+            listview = $( e.target );
+        // We store the generated form in a variable attached to the popup so we
+        // avoid creating a second form/input field when the listview is
+        // destroyed/rebuilt during a refresh.
+        if ( !form ) {
+            input = $( "<input data-type='search'></input>" );
+            form = $( "<form></form>" ).append( input );
+            input.textinput();
+            $( "#select_refeicao-listbox" )
+                .prepend( form )
+                .jqmData( "filter-form", form );
+        }
+        // Instantiate a filterable widget on the newly created listview and
+        // indicate that the generated input is to be used for the filtering.
+        listview.filterable({ input: input });
+    })
+    // The custom select list may show up as either a popup or a dialog,
+    // depending how much vertical room there is on the screen. If it shows up
+    // as a dialog, then the form containing the filter input field must be
+    // transferred to the dialog so that the user can continue to use it for
+    // filtering list items.
+    //
+    // After the dialog is closed, the form containing the filter input is
+    // transferred back into the popup.
+    .on( "pagebeforeshow pagehide", "#select_refeicao-dialog", function( e ) {
+        var form = $( "#select_refeicao-listbox" ).jqmData( "filter-form" ),
+            placeInDialog = ( e.type === "pagebeforeshow" ),
+            destination = placeInDialog ? $( e.target ).find( ".ui-content" ) : $( "#select_refeicao-listbox" );
+        form
+            .find( "input" )
+            // Turn off the "inset" option when the filter input is inside a dialog
+            // and turn it back on when it is placed back inside the popup, because
+            // it looks better that way.
+            .textinput( "option", "inset", !placeInDialog )
+            .end()
+            .prependTo( destination );
+    });
+		</script>
+                <style>
+ ul#navigation {
+    position: fixed;
+    margin: 0px;
+    padding: 0px;
+    top: 50px;
+    left: 0px;
+    list-style: none;
+    z-index:9999;
+}
+ul#navigation li {
+    width: 50px;
+}
+ul#navigation li a {
+    display: block;
+    margin-left: -2px;
+    width: 50px;
+    height: 35px;
+    background-color:#CFCFCF;
+    background-repeat:no-repeat;
+    background-position:center center;
+    border:1px solid #AFAFAF;
+    -moz-border-radius:0px 10px 10px 0px;
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -khtml-border-bottom-right-radius: 10px;
+    -khtml-border-top-right-radius: 10px;
+    /*-moz-box-shadow: 0px 4px 3px #000;
+    -webkit-box-shadow: 0px 4px 3px #000;
+    */
+    opacity: 0.6;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=60);
+}
+ul#navigation .home a{
+    background-image: url(img/home.png);
+
+}
+
+.ui-selectmenu.ui-popup .ui-input-search {
+    margin-left: .5em;
+    margin-right: .5em;
+}
+.ui-selectmenu.ui-dialog .ui-content {
+    padding-top: 0;
+}
+.ui-selectmenu.ui-dialog .ui-selectmenu-list {
+    margin-top: 0;
+}
+.ui-selectmenu.ui-popup .ui-selectmenu-list li.ui-first-child .ui-btn {
+    border-top-width: 1px;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+.ui-selectmenu.ui-dialog .ui-header {
+    border-bottom-width: 1px;
+}
+				</style>
+		<script>
+			if (window.location.hash === "#_=_")
+				window.location.hash = "";
+
+		</script>
+	</head>
+	<body onload="time() + data()">
+		<div class="modal"></div>
+		<div data-role="header" data-position="fixed" data-theme="a">
+			<span class="pull-right"><a href="perfil" data-ajax="false"><img src="#" alt="Matheus" class="img-circle" width="40" height="40" /></a> </span>
+			<a href="#popupMenu" data-rel="popup" data-transition="flip" class="ui-btn ui-btn-left ui-alt-icon ui-nodisc-icon ui-corner-all ui-btn-icon-notext ui-icon-bars" data-mini="true">BabyEat</a>
+			<h1>Sistema Babyeat v5</h1>
+		</div><!-- /header -->
+		<div data-role="page" data-title="BabyEat" class="jqm-demos">
+			<div role="main" class="ui-content jqm-content jqm-fullwidth"  id="wrapper">
+				<div id="retorno"> </div>
+
+
+
+        <ul id="navigation">
+      <li class="home" id ="add_anotacao_editar"><a href="#"  title="Adicionar Anotações"></a></li>
+
+        </ul>
+
+
+				<div id="moving-background">
+				 <div class="ui-grid-a ui-responsive" style=" margin:5px 0px 0px -18px">
+				 <div class="ui-block-a" style="width: 125px; z-index: 960">
+							<div class="ui-body ui-body-d">
+								<div id="circles">
+
+									<div class="inner-circles">
+										<p id="content">
+											...
+										</p>
+										<p id="loading"><img src="img/020.gif" alt="Carregando"/>
+										</p>
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div><!-- /grid-a -->
+
+
+					  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="ui-body ui-body-a ui-corner-all">
+                                        <div class="header">
+                                            <p class="pull-right">
+                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span>
+                                                    <span class="sr-only">Fechar</span>
+                                                </button></p>
+                                            <h5 class="modal-title" id="myModalLabel"> Adicionar Refeiçõe e Anotações Editar </h5>
+
+                                        </div>
+
+
+                                        <div class="modal-body"></div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+					<div data-role="popup" id="popupMenu" data-theme="b">
+						<!--  menu -->
+						<ul data-role="listview" data-inset="true" style="min-width:210px;">
+							<li data-role="list-divider">
+								Escolha uma Opção.
+							</li>
+							<li>
+								<a href="index.html" data-ajax="false">Babyeat</a>
+							</li>
+							<li>
+								<a href="tools/index.html" data-ajax="false">Tools</a>
+							</li>
+							<li>
+								<a href="add_anotacao/index.html" data-ajax="false">Config Anotações</a>
+							</li>
+							<li>
+								<a href="perfil/index.html" data-ajax="false">Perfil</a>
+							</li>
+							<li>
+								<a href="rel_diario/index.html" data-ajax="false">Rel. Diário</a>
+							</li>
+								<li>
+								<a href="todos_registros/index.html" data-ajax="false">Rel Todos Registro</a>
+							</li>
+							<li>
+								<a href="rel_diario_tds/index.html" data-ajax="false">Totais mls dos Mês Atual</a>
+							</li>
+							 <li>
+								<a href="rel_geral/index.html" data-ajax="false">Totais mls Todos os Meses</a>
+							</li>
+
+							<li>
+								<a href="rel_mes/index.html" data-ajax="false">Relat. Mês</a>
+							</li>
+
+							<li>
+								<a href="grafico/index.html" data-ajax="false">Gráfico</a>
+							</li>
+						</ul>
+					</div>
+
+					<!-- /menu -->
+					<div class="bg-success ui-corner-all" style=" margin:100px 0px 0px 0px; width: auto; height: 100px; border: solid 1px; border-color: #CCCCCC">
+						<p id="carregando_msg">
+							<div id="msg" class="text-danger text-center" style="font-size: small; padding: 5px 5px 5px 5px">
+								<img src="img/loading.gif" />
+							</div>
+						<p class="datajs text-success text-center" style="font-size: small; padding: 3px 3px 3px 3px">
+						<span id="txt">Carrengando ... </span> <span id="datajs"> </span>
+						</p>
+					</div><!-- formulario -->
+
+ 
+
+
+					<form name="form1" method="post" id="form_cadastro_refeicao" class="form">
+						<select name="refeicao" id="select_refeicao" class="form-control input-sm">
+							<option class="form-control input-sm">Selecione Um Anotação</option>
+						</select>
+ 					   <input  class="form-control input-sm" type="range" name="ml" id="ml" value="0" min="0" max="500" data-highlight="true">
+						<!--input  class="form-control input-sm" data-role="date" id="data"  name="data" data-inline="false"  placeholder="Data"-->
+						<input  class="form-control input-sm" type="date" id="data" name="data">
+						<input  type="time" name="horas" id="horas"  class="form-control input-sm">
+						<button type="submit" id="botao_submit" class="btn ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-right ui-btn-a">
+							Salvar
+						</button><span ><img class="load" alt="Loading" src="img/020.gif" style="display:none !important;"></span>
+					</form><!-- /formulario -->
+				</div><!-- /moving-background -->
+
+			</div><!-- /content -->
+		</div><!-- /page -->
+		<div data-role="footer" data-position="fixed" data-theme="a">
+			<div data-role="navbar">
+				<ul>
+					<li>
+						<a href="index.html" data-prefetch="true" data-transition="fade" data-ajax="false">BabyEat</a>
+					</li>
+					<li>
+						<a href="rel_diario/index.html" data-prefetch="true" data-transition="flip" data-ajax="false">Rel.D</a>
+					</li>
+					<li>
+						<a href="perfil/index.html" data-prefetch="false"  data-ajax="false" data-transition="turn">Perfil</a>
+					</li>
+					<li>
+						<a href="tools/index.html" data-prefetch="true"  data-ajax="false" data-transition="slide">Calc</a>
+					</li>
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+
+		<!--script src="js/json_total_diario.js"></script-->
+		<script src="js/json_add_anotacoes.js"></script>
+		<script src="js/json_listar_anotacoes.js" type="text/javascript"></script>
+		<script src="js/add_editar_anotacoes.js"></script>
+		<script src="js/index/main.js"></script>
+		<script src="js/horas.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+ $(document).ready(function(){
+  $("#seta").click(function(){
+  	//$('#navigation a').stop().animate({'marginLeft':'-85px'},1000);
+     $('#navigation > li').hover(
+                    function () {
+                        $('a',$(this)).stop().animate({'marginLeft':'-2px'},200);
+
+                   },
+                   function () {
+                    $('a',$(this)).stop().animate({'marginLeft':'-85px'},200);
+                   }
+            );
+
+                 $("#navigation a").slideToggle("fast"
+
+                 );
+         });
+
+
+});
+
+        </script>
+
+	</body>
+</html>

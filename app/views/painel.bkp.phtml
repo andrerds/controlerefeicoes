@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>Admin Navigation - Bootsnipp.com</title>
+            <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link id="bootstrap-css" rel="stylesheet" href="css/bootstrap.min.css">
+        <style type="text/css">
+            .label,.glyphicon { margin-right:5px; }
+
+            .modal-header-warning
+            {
+                color:#fff;
+                padding:9px 15px;
+                border-bottom:1px solid #eee;
+                background-color: #F0AD4E;
+                -webkit-border-top-left-radius: 5px;
+                -webkit-border-top-right-radius: 5px;
+                -moz-border-radius-topleft: 5px;
+                -moz-border-radius-topright: 5px;
+                 border-top-left-radius: 5px;
+                 border-top-right-radius: 5px;
+            }
+            .modal-header-danger {
+                color:#fff;
+                padding:9px 15px;
+                border-bottom:1px solid #eee;
+                background-color: #d9534f;
+                -webkit-border-top-left-radius: 5px;
+                -webkit-border-top-right-radius: 5px;
+                -moz-border-radius-topleft: 5px;
+                -moz-border-radius-topright: 5px;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            } 
+        </style>
+        <script src="js/jquery-1.10.2.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <nav role="navigation" class="navbar navbar-default">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                        <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button>
+                    <a href="/" class="navbar-brand">Login - CRUD</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div id="bs-example-navbar-collapse-1" class="navbar-collapse collapse" style="height: 1px;">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="glyphicon glyphicon-user"></span><?php echo $_SESSION["login-crud"]["Nome"]; ?> <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a data-toggle="modal" href="#warning"><span class="glyphicon glyphicon-pencil"></span>Editar Perfil</a></li>
+                                <li><a data-toggle="modal" href="#danger"><span class="glyphicon glyphicon-trash"></span>Apagar conta</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/usuario/sair"><span class="glyphicon glyphicon-off"></span>Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+        </div>
+
+        <div class="container">
+            <!-- Modal -->
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="warning" class="modal fade" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header modal-header-warning">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                            <h1><span class="glyphicon glyphicon-pencil"></span> Atualizar dados!</h1>
+                        </div>
+                        <form method="post" action="/usuario/editrar">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="text" class="form-control " name="nome" placeholder="Nome">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control " name="login" placeholder="Login">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" name="senha" placeholder="Senha">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <!--input type="submit" class="btn btn-default" value="Sim"-->
+                                <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Sim</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Não</button>
+
+                            </div>
+                        </form>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+            <!-- Modal -->
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="danger" class="modal fade" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header modal-header-danger">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                            <h1><span class="glyphicon glyphicon-trash"></span>Apagar conta</h1>
+                        </div>
+                        <form method="post" action="/usuario/apagar">
+                            <div class="modal-body">
+                                Você deseja realmente apagar sua conta?
+                            </div>
+                            <div class="modal-footer">
+                                <!--input type="submit" class="btn btn-default" value="Sim"-->
+                                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Sim</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Não</button>
+
+                            </div>
+                        </form>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div>
+    </body>
+</html>

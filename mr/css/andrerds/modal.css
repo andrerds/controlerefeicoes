@@ -1,0 +1,105 @@
+/**
+ *	Autor			: Andre rds
+ *	Site			: http://www.rdsinfor.com
+ *	Descricao		: Folha de estilo das modais do site do Prof. Warlisson Miranda
+ *	Data de criacao	: 24/10/2014 
+ */
+	
+/**
+ *  Modal
+ *	Modal box - Configuraçoes gerais
+ */
+        .modal{width:100%;
+              height:100%; 
+              background:rgba(255, 255, 255, 0.75);
+              position:fixed; 
+              top:0; 
+              left:0; 
+              z-index:9999; 
+              display:none;
+              
+        }
+	.modal-box{background:#FFF; 
+                  margin-top:-230px; 
+                  border:1px solid #06C; 
+                  position:absolute; 
+                  top:50%; left:50%; 
+                  display:none;
+                  border-radius: 4px;
+                  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+                  box-sizing: border-box;
+        }
+	
+	.modal-header{padding:15px; font-size:18px; color:#FFF; background:#06C;}
+	.modal-header i{margin-right:5px;}
+	.modal-header a{float:right; font-size:15px; margin-top:3px; color:#FFF;}
+	
+	.modal-body{padding:20px; overflow:hidden;}
+	.modal-body p{margin-top:10px;}
+	.modal-body p:first-child{margin-top:0;}
+	
+	.modal-footer{padding:5px 5px; background:#F4F4F4; border-top:1px solid #F0F0F0; overflow:hidden;}
+	.modal-footer .load{float:right; margin-top:5px; display: none;}
+	.modal-footer .btn{float:right; margin-left:8px; padding:5px 20px; font-size:15px; color:#FFF; background:#06C; border:none;}
+	.modal-footer .btn:hover{background:#09F; cursor:pointer;}
+        .modal-footer .btn:disabled{cursor: default; background:#2D89F0;}
+
+	.modal-info-msg{margin-top:20px; padding-top:15px; font-size:14px; border-top:1px solid #DADADA;}
+	.modal-info-msg span{font-size:16px;}
+
+/**
+ *	FormulÃ¡rios
+ */
+	
+	.modal-box form{overflow:hidden;}
+	.modal-box label{display:block; margin-bottom:15px;}
+	.modal-box label span{display:block;}
+	.modal-box label input{padding:10px; border:5px solid #DFDFDF; font-size:18px;}
+	.modal-box label input:focus{background:#F9F9F9;}
+	.modal-box label select{padding:9px; border:5px solid #DFDFDF; font-size:18px;}
+	.modal-box label textarea{height:100px; padding:10px; border:5px solid #DFDFDF; font-size:18px; resize:none;}
+	.modal-box label textarea:focus{background:#F9F9F9;}
+        
+	.modal-box label input:focus,
+	.modal-box label textarea:focus{background:#F9F9F9; border-color:#51A8FF;}
+        
+        .modal-box label.last{margin-bottom: 0;}        
+        .modal-box .infocom{font-size: 13px; color: #777;}
+	
+/**
+ * Tipos de modais
+ * sm: small (pequena), md: media, lg: larga
+ */
+
+	.modal-lg{width:840px; margin-left:-420px;}
+
+	.modal-md{width:500px; margin-left:-250px;}
+	.modal-md input, .modal-md textarea{width:430px;}
+	.modal-md select{width:450px;}
+
+	.modal-sm{width:300px; margin-left:-175px;}
+	.modal-sm input, .modal-sm textarea{width:288px;}
+	.modal-sm select{width:310px;}
+
+/**
+ *	Modais de retorno
+ *	sucesso, error, aleta, info
+ */
+ 
+ 	.modal-sucesso{border-color:#5CB85C;}
+	.modal-sucesso .modal-header{background:#5CB85C;}
+	
+	.modal-error{border-color:#D9534F;}
+	.modal-error .modal-header{background:#D9534F;}
+	
+	.modal-alerta{border-color:#F0AD4E;}
+	.modal-alerta .modal-header{background:#F0AD4E;}
+	
+	.modal-info{border-color:#5BC0DE;}
+	.modal-info .modal-header{background:#5BC0DE;}
+	
+	.modal-padrao{border-color:#333;}
+	.modal-padrao .modal-header{background:#333;}
+	
+	.modal-sucesso .btn, .modal-error .btn,	.modal-info .btn, .modal-alerta .btn, .modal-padrao .btn{background:#333;}
+	.modal-sucesso .btn:hover, .modal-error .btn:hover, .modal-info .btn:hover, .modal-alerta .btn:hover, .modal-padrao .btn:hover{background:#555;}

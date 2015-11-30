@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Relatório de totais de todos os dias do mes atual.</title>
+	<link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" href="../css/datapicker/jquery.mobile.datepicker.css" />
+	<link rel="stylesheet" href="../css/datapicker/jquery.mobile.datepicker.theme.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/jquery.mobile-1.4.0.min.css">
+ 	<link rel="stylesheet" href="../css/sis.css">
+ 	<link rel="stylesheet" href="../css/andrerds/custon.css">
+ <script src="../js/jquery.js"></script>
+ <script src="../js/jquery.mobile-1.4.0.min.js"></script>
+ <script src="../js/bootstrap.min.js"></script>
+ 	<script>
+		$(function() {
+			$( "[data-role='navbar']" ).navbar();
+			$( "[data-role='header'], [data-role='footer']" ).toolbar();
+		});
+		// Update the contents of the toolbars
+		$( document ).on( "pagecontainerchange", function() {
+			// Each of the four pages in this demo has a data-title attribute
+			// which value is equal to the text of the nav button
+			// For example, on first page: <div data-role="page" data-title="Info">
+			var current = $( ".ui-page-active" ).jqmData( "title" );
+			// Change the heading
+			$( "[data-role='header'] h1" ).text( current );
+			// Remove active class from nav buttons
+			$( "[data-role='navbar'] a.ui-btn-active" ).removeClass( "ui-btn-active" );
+			// Add active class to current nav button
+			$( "[data-role='navbar'] a" ).each(function() {
+				if ( $( this ).text() === current ) {
+					$( this ).addClass( "ui-btn-active" );
+				}
+			});
+		});
+	</script>
+
+</head>
+<body onload="time() + data()">
+    <div data-role="header" data-position="fixed" data-theme="a">
+	 <a href="../toolbar/" data-rel="back" class="ui-btn ui-btn-left ui-alt-icon ui-nodisc-icon ui-corner-all ui-btn-icon-notext ui-icon-carat-l">Back</a>
+
+        <h1>Relatorio de totais de todos os dias do mes</h1>
+    </div><!-- /header -->
+
+	<div data-role="page" data-title="Relatorio de totais de todos os dias do mes atual" class="jqm-demos" id="container">
+	<div role="main" class="ui-content jqm-content jqm-fullwidth"  id="wrapper">
+
+ 	<div id="retorno"> </div>
+
+  		<div style=" margin:10px 0px 0px -8px" > <!--  menu -->
+
+<div data-role="controlgroup" data-type="horizontal" data-mini="true">
+    <a href="#" id="janela" class="ui-btn ui-corner-all ui-icon-plus ui-btn-icon-left">Salvar Total. </a>
+    <a href="http://houseon.ddns.net:8088/app/ajax/rel_diario/rel_pdf_todos.php" rel="external"  data-ajax="false" class="ui-btn ui-corner-all ui-icon-bars ui-btn-icon-left">Pdf</a>
+    <a href="http://houseon.ddns.net:8088/app/ajax/rel_diario/ger_pdf_mes_atual.php" rel="external" class="ui-btn ui-corner-all ui-icon-bars ui-btn-icon-right">Pdf Mes Atual</a>
+</div>
+ 	<!--a href="#" data-rel="popup" data-transition="flip" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-grid ui-btn-icon-left ui-btn-a" data-mini="true" >Adicionar Novo</a-->
+  </div>
+  <div class="panel panel-default row">
+  <!-- Default panel contents -->
+   <form>
+   <input id="filterTable-input" data-type="search" data-role="date" placeholder="Pesquisar" style="height: 5px">
+   </form>
+  <div class="panel-heading">Totais diarios do Mês Atual </div>
+
+	    <div class="table-responsive">
+                            <table class="table table-striped" data-filter="true" data-input="#filterTable-input">
+                                 <thead>
+                                 	<th>Id</th>
+                                     <th>Quant. ml</th>
+                                      <th>Mes</th>
+                                      <th>Data</th>
+                                      <th>Ano</th>
+                                       <th>Editar/Excluir</th>
+                                   </thead>
+                                    <tbody>
+                                    <td class="load"><img src="../img/loading.gif" /> </td>
+                                    </tbody>
+                                </table> <!-- Table -->
+                            </div>
+ </div>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="ui-body ui-body-a ui-corner-all">
+                                        <div class="header">
+                                            <p class="pull-right">
+                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span>
+                                                    <span class="sr-only">Fechar</span>
+                                                </button></p>
+                                            <h5 class="modal-title" id="myModalLabel"> Editar Totalizador dia. </h5>
+                                        </div>
+                                        <div class="modal-body"></div>
+                                    </div>
+                                </div>
+                            </div> <span id="txt">Carregando as Horas... </span>
+ 	<p id="datajs" class="datajs text-center">Carregando Data Atual.. </p>
+  		<pre  class="smaller">{ $ Todos direitos reservados para Babyeat - by André rds */ } </pre>
+		</div><!-- /content -->
+ 		</div><!-- /page -->
+
+	<div data-role="footer" data-position="fixed" data-theme="a">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="../index.html" data-prefetch="true" data-transition="fade" data-ajax="false">Configurações Adicionar Ref</a></li>
+				<li><a href="../rel_diario/index.html" data-prefetch="true" data-transition="flip" data-ajax="false">Menu- Rel.Diarío</a></li>
+
+			</ul>
+		</div><!-- /navbar -->
+	</div><!-- /footer -->
+
+ 		<!--script src="js/json_total_diario.js"></script-->
+		<!--script src="../js/json_add_anotacoes.js"></script>
+		<script src="../js/json_listar_anotacoes.js" type="text/javascript"></script-->
+		<script src="../js/add_editar_totais_diario_mes.js"></script>
+		<script src="../js/index/main.js"></script>
+		<script src="../js/horas.js" type="text/javascript"></script>
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta content="Maks Surguy, @msurguy" name="author">
+        <title>Painel</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .modal-header-warning
+            {
+                color:#fff;
+                padding:9px 15px;
+                border-bottom:1px solid #eee;
+                background-color: #F0AD4E;
+                -webkit-border-top-left-radius: 5px;
+                -webkit-border-top-right-radius: 5px;
+                -moz-border-radius-topleft: 5px;
+                -moz-border-radius-topright: 5px;
+                 border-top-left-radius: 5px;
+                 border-top-right-radius: 5px;
+            }
+            .modal-header-danger {
+                color:#fff;
+                padding:9px 15px;
+                border-bottom:1px solid #eee;
+                background-color: #d9534f;
+                -webkit-border-top-left-radius: 5px;
+                -webkit-border-top-right-radius: 5px;
+                -moz-border-radius-topleft: 5px;
+                -moz-border-radius-topright: 5px;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+            
+            .jumbotron {
+                background: #358CCE;
+                color: #FFF;
+                border-radius: 0px;
+            }
+            .jumbotron-sm {
+                padding-top: 24px;
+                padding-bottom: 24px; }
+            .jumbotron small {
+                color: #FFF;
+            }
+            .h1 small {
+                font-size: 24px;
+            }
+        </style>
+        <script src="js/jquery-1.10.2.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+        <div id="wrap">
+            <nav style="margin-bottom: 0;" role="navigation" class="navbar navbar-default">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button data-target=".navbar-bootsnipp-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="animbrand"><a href="./" class="navbar-brand">Login - CRUD</a></div>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse navbar-bootsnipp-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                    <span class="glyphicon glyphicon-user"></span>&nbsp;
+                                    <?php echo $_SESSION["login-crud"]["Nome"]; ?>
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="">
+
+                                         <a data-toggle="modal" href="#listar">
+                                             <span class="glyphicon glyphicon-align-justify"></span>&nbsp;
+                                            Usuários
+                                        </a>
+
+
+                                         
+                                          
+                                    </li>
+                                    
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a data-toggle="modal" href="#warning">
+                                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;
+                                            Editar Perfil
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="modal" href="#danger">
+                                            <span class="glyphicon glyphicon-trash"></span>&nbsp;
+                                            Apagar conta
+                                        </a>
+                                    </li>
+                                    
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="./usuario/sair">
+                                            <span class="glyphicon glyphicon-off"></span>&nbsp;
+                                            Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                    </div><!-- /.navbar-collapse -->
+                </div>
+            </nav>
+        </div>
+
+        
+        
+        <div class="container">
+            <!-- Modal -->
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="warning" class="modal fade" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header modal-header-warning">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                            <h1><span class="glyphicon glyphicon-pencil"></span> Atualizar!</h1>
+                        </div>
+                        <form method="post" action="./usuario/editrar">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="text" class="form-control " name="nome" placeholder="Nome" value="<?php echo $_SESSION["login-crud"]["Nome"]; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control " name="login" placeholder="Login" value="<?php echo $_SESSION["login-crud"]["Login"]; ?>">
+                                </div>
+                                <div class="input-group">
+                                    <input type="password" class="form-control pwd" name="senha" placeholder="Senha" value="<?php echo $_SESSION["login-crud"]["Senha"]; ?>">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default revela"><i class="glyphicon glyphicon-eye-open"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <!--input type="submit" class="btn btn-default" value="Sim"-->
+                                <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Sim</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Não</button>
+
+                            </div>
+                        </form>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+
+            <!-- Modal -->
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="danger" class="modal fade" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header modal-header-danger">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                            <h1><span class="glyphicon glyphicon-trash"></span> Apagar conta</h1>
+                        </div>
+                        <form method="post" action="usuario/apagar">
+                            <div class="modal-body">
+                                Você deseja realmente apagar sua conta?
+                            </div>
+                            <div class="modal-footer">
+                                <!--input type="submit" class="btn btn-default" value="Sim"-->
+                                <input type="hidden" name="apagar" value="<?php echo md5($_SESSION["login-crud"]["Nome"]); ?>" />
+                                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Sim</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Não</button>
+
+                            </div>
+                        </form>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <div class="h2"></div>
+            <div class="panel panel-default">
+                                                        <!-- Default panel contents -->
+                                  <div class="panel-heading">Painel - sistema.</div>
+                                  <div class="panel-body">
+                                    
+                                  </div>
+
+                                  <!-- Table -->
+                                  <table class="table">
+      <caption>Perfil do usuario.</caption>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Refeição</th>
+          <th>Ml</th>
+          <th>Data</th>
+          <th>Hora</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td><?php echo $_SESSION["login-crud"]["Nome"]; ?></td>
+          <td><?php echo $_SESSION["login-crud"]["Login"]; ?></td>
+          <td><button class="btn btn-warning" data-toggle="modal" href="#warning"><span class="glyphicon glyphicon-pencil"></span> Editar Perfil</button>
+               <button class="btn btn-danger" data-toggle="modal" href="#danger"><span class="glyphicon glyphicon-trash"></span> Deletar Perfil</button> 
+           </td>
+            
+        </tr>
+         
+      </tbody>
+    </table>
+                                </div>
+        </div>
+        <script>
+            $(".revela").mousedown(
+                function() {
+                    $(".pwd").replaceWith($('.pwd').clone().attr('type', 'text'));
+                }
+            )
+            .mouseup(
+                function() {
+                    $(".pwd").replaceWith($('.pwd').clone().attr('type', 'password'));
+                }
+            )
+            .mouseout(
+                function() {
+                    $(".pwd").replaceWith($('.pwd').clone().attr('type', 'password'));
+                }
+            );
+        </script>
+    </body>
+</html>
