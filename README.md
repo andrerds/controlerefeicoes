@@ -1,5 +1,5 @@
 # Controle de Refeições - Babyeat
-Sistema em PHP Codeigniter.
+Sistema em PHP em breve com Codeigniter.
 Ajax, Jquery, JqueryMobile
 
 Adicina refeições !
