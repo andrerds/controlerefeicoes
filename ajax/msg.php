@@ -88,9 +88,7 @@ elseif($q11 >= $resultado){
 	$msg = "quebrou o papai";
 } 
  ?>
- 
- 
-<samp class="text-center"> <?php echo "é ".$horas ." ". $msg  ?></samp> 
+ <samp class="text-center"> <?php echo "é ".$horas ." ". $msg  ?></samp>
 <?php
 
  endforeach;
